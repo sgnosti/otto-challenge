@@ -43,3 +43,13 @@ You can build and run the tests with
 ```
 ./gradlew build
 ```
+If you want to see this running, you can build a docker image and run the application locally.
+It is as easy as
+```
+./gradlew jibDockerBuild 
+
+docker run -d -p 8081:8081 challenge:0.0.1-SNAPSHOT
+
+curl localhost:8081/health
+```
+and you will get a nice greeting.
