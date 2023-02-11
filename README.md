@@ -37,3 +37,9 @@ security groups.
 - A pipeline in GitHub Actions is not required but would be a plus.
 
 - Putting the app into a docker container is not required but would be plus.
+
+## Usage
+You can build and run the tests with
+```
+./gradlew build
+```
