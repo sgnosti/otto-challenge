@@ -10,7 +10,7 @@ import reactor.test.StepVerifier;
 import java.time.Duration;
 
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@SpringBootTest
 class IpRangesClientTest {
     @Value("${ipranges.sourceUrl}")
     private String url;
