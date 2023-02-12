@@ -12,7 +12,7 @@ public class IpRangeFilter {
     Flux<String> get(String regionPrefix) {
         return ipRanges
                 .flatMapIterable(IpRanges::getAllPrefixes)
-                .filter(prefix -> regionPrefix.equalsIgnoreCase(prefix.getRegion().substring(0, 2)))
+                .filter(prefix -> prefix.getRegion().startsWith(regionPrefix.toLowerCase()))
                 .map(IpRanges.Prefix::getIpPrefix);
     }
 

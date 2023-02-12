@@ -56,4 +56,14 @@ class OttoChallengeApplicationTests {
                 .expectStatus().isOk();
     }
 
+    @Test
+    void testIpRangeFilterWithInvalidQueryParameter() {
+
+        webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path(ipRangeFilter).queryParam("region", "XY").build())
+                .accept(MediaType.TEXT_PLAIN)
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
 }
