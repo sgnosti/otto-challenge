@@ -38,7 +38,8 @@ public class IpRanges {
     @JsonDeserialize(builder=IpRanges.Prefix.PrefixBuilder.class)
     public static class Prefix {
 
-        @JsonAlias({"ip_prefix", "ipv6_prefix"})
+        @JsonProperty("ip_prefix")
+        @JsonAlias ("ipv6_prefix")
         private String ipPrefix;
 
         @JsonProperty
