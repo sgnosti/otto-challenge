@@ -53,3 +53,11 @@ docker run -d -p 8081:8081 challenge:0.0.1-SNAPSHOT
 curl localhost:8081/health
 ```
 and you will get a nice greeting.
+
+Now, things are getting serious. Let's face the challenge! Try for instance
+```
+curl localhost:8081?region=US
+```
+and enjoy.
+
+That's it. Don't forget to clean up running containers and unnecessary images to keep your computer clean ;-).

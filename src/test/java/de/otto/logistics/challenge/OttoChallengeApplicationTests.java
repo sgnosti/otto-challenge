@@ -16,6 +16,9 @@ class OttoChallengeApplicationTests {
     @Value("${route.health}")
     private String healthRoute;
 
+    @Value("${route.ipRangeFilter}")
+    private String ipRangeFilter;
+
     @Autowired
     private WebTestClient webTestClient;
 
@@ -28,6 +31,26 @@ class OttoChallengeApplicationTests {
 
         webTestClient.get()
                 .uri(healthRoute)
+                .accept(MediaType.TEXT_PLAIN)
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testIpRangeFilterWithoutQueryParameter() {
+
+        webTestClient.get()
+                .uri(ipRangeFilter)
+                .accept(MediaType.TEXT_PLAIN)
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testIpRangeFilterWithValidQueryParameter() {
+
+        webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path(ipRangeFilter).queryParam("region", "US").build())
                 .accept(MediaType.TEXT_PLAIN)
                 .exchange()
                 .expectStatus().isOk();

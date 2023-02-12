@@ -4,10 +4,8 @@ import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -17,7 +15,7 @@ import java.util.stream.Stream;
 @Data
 @Builder
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonDeserialize(builder=IpRanges.IpRangesBuilder.class)
+@JsonDeserialize(builder = IpRanges.IpRangesBuilder.class)
 public class IpRanges {
 
     @JsonProperty("prefixes")
@@ -35,11 +33,11 @@ public class IpRanges {
     @Data
     @Builder
     @JsonIgnoreProperties(ignoreUnknown = true)
-    @JsonDeserialize(builder=IpRanges.Prefix.PrefixBuilder.class)
+    @JsonDeserialize(builder = IpRanges.Prefix.PrefixBuilder.class)
     public static class Prefix {
 
         @JsonProperty("ip_prefix")
-        @JsonAlias ("ipv6_prefix")
+        @JsonAlias("ipv6_prefix")
         private String ipPrefix;
 
         @JsonProperty
