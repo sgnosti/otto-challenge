@@ -11,13 +11,13 @@ import java.time.Duration;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
-class IpRangesClientTest {
+class AwsIpRangesClientTest {
     @Value("${ipranges.sourceUrl}")
     private String url;
 
     @Test
     void testReadIpRangesFromSource() {
-        IpRangesClient source = new IpRangesClient(url);
+        IpRangesClient source = new AwsIpRangesClient(url);
         StepVerifier.create(source.getIpRanges())
                 .expectNextMatches(this::validate)
                 .expectComplete()

@@ -1,5 +1,6 @@
 package de.otto.logistics.challenge.iprange;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
@@ -12,9 +13,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Component
+@AllArgsConstructor
 public class IpRangeFilterHandler {
 
-    @Autowired
     private IpRangesClient client;
 
     @Value("${ipranges.validRegions}")
