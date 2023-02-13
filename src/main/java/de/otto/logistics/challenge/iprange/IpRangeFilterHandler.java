@@ -1,7 +1,6 @@
 package de.otto.logistics.challenge.iprange;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -35,8 +34,11 @@ public class IpRangeFilterHandler {
                     .filter(region -> region.equalsIgnoreCase(regionParam))
                     .map(region -> (region.equals("ALL")) ? "" : region)
                     .findFirst().orElseThrow();
-            IpRangeFilter filter = new IpRangeFilter(client.getIpRanges());
-            return filter.get(regionPrefix).collect(Collectors.joining(System.lineSeparator()));
+            return client.getIpRanges()
+                    .flatMapIterable(IpRanges::getAllPrefixes)
+                    .filter(prefix -> prefix.getRegion().startsWith(regionPrefix.toLowerCase()))
+                    .map(IpRanges.Prefix::getIpPrefix)
+                    .collect(Collectors.joining(System.lineSeparator()));
         } catch (Exception e) {
             return Mono.error(e);
         }
